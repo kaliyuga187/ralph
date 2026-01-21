@@ -190,6 +190,62 @@ Edit `prompt.md` to customize Ralph's behavior for your project:
 
 Ralph automatically archives previous runs when you start a new feature (different `branchName`). Archives are saved to `archive/YYYY-MM-DD-feature-name/`.
 
+## MCP Server (Use with Claude)
+
+Ralph includes an MCP (Model Context Protocol) server that lets you use Ralph with Claude Desktop or Claude Code.
+
+### Setup
+
+```bash
+cd mcp-server
+npm install
+npm run build
+```
+
+### Configure Claude Desktop
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
+
+```json
+{
+  "mcpServers": {
+    "ralph": {
+      "command": "node",
+      "args": ["/path/to/ralph/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+### Configure Claude Code
+
+Add to `.claude/settings.json` in your project:
+
+```json
+{
+  "mcpServers": {
+    "ralph": {
+      "command": "node",
+      "args": ["/path/to/ralph/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+### Available MCP Tools
+
+| Tool | Description |
+|------|-------------|
+| `ralph_status` | Get current status - project info, progress, next story |
+| `ralph_get_prd` | Read the full PRD with all user stories |
+| `ralph_get_next_story` | Get the highest priority incomplete story |
+| `ralph_mark_story_complete` | Mark a story as complete |
+| `ralph_log_progress` | Log learnings to progress.txt |
+| `ralph_create_prd` | Create a new PRD with user stories |
+| `ralph_check_complete` | Check if all stories are done |
+
+See `mcp-server/README.md` for full documentation.
+
 ## References
 
 - [Geoffrey Huntley's Ralph article](https://ghuntley.com/ralph/)
