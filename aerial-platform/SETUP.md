@@ -50,14 +50,21 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## 5. Database Migrations
 
-Database schemas will be created automatically as you complete more user stories.
+Run the database migrations to create required tables:
 
-For now, the Supabase client is configured and ready to use.
+1. Go to your [Supabase Dashboard](https://app.supabase.com)
+2. Navigate to **SQL Editor** (left sidebar)
+3. Click **New Query**
+4. Copy the contents of `supabase/migrations/001_create_user_profiles.sql`
+5. Paste into the SQL editor and click **Run**
+
+See `supabase/migrations/README.md` for detailed instructions and alternative methods.
 
 ## Next Steps
 
-- Complete US-005 to create the database schema
-- Complete US-006 to set up authentication
+- ✅ US-004: Supabase configured
+- ✅ US-005: Database schema created
+- ⏸️ US-006: Set up authentication (next)
 - See `prd.json` for full implementation roadmap
 
 ## Troubleshooting

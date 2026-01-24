@@ -95,3 +95,27 @@
   - SETUP.md provides step-by-step guide for new developers
   - All future service integrations (Mapbox, Stripe, etc.) have placeholders ready
 ---
+## 2026-01-24 07:34 - US-005
+- Created comprehensive database schema for user profiles with role-based access
+- Files created:
+  - aerial-platform/supabase/migrations/001_create_user_profiles.sql
+  - aerial-platform/supabase/migrations/README.md
+  - aerial-platform/types/database.ts (TypeScript types matching schema)
+- Files modified:
+  - aerial-platform/SETUP.md (added migration instructions)
+- Database schema includes:
+  - `profiles` table: Basic user info (id, email, role, timestamps)
+  - `trade_profiles` table: Contractor-specific data (business_name, services, rating, etc.)
+  - User role enum: 'client' | 'trade'
+  - RLS policies: Users see only own data, clients can browse trade profiles
+  - Indexes on email, role, zip_code, rating for performance
+  - Triggers for auto-updating updated_at timestamps
+- **Learnings for future iterations:**
+  - Use CREATE TABLE IF NOT EXISTS for idempotent migrations
+  - RLS policies require both table-level and row-level security
+  - Indexes improve query performance on frequently filtered columns
+  - auth.uid() function used in RLS policies to get current user
+  - Triggers automatically update timestamps on row changes
+  - TypeScript types should match database schema exactly
+  - Services stored as TEXT[] array for flexibility
+---
