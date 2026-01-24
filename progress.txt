@@ -77,3 +77,21 @@
   - Carousel indicators use transition-all for smooth width changes
   - All intervals properly cleaned up in useEffect return
 ---
+## 2026-01-24 07:26 - US-004
+- Set up Supabase backend infrastructure and environment configuration
+- Installed @supabase/supabase-js client library
+- Files created:
+  - aerial-platform/.env.local.example (template with all required env vars)
+  - aerial-platform/.env.local (placeholder values for development)
+  - aerial-platform/lib/supabase.ts (Supabase client with connection test)
+  - aerial-platform/SETUP.md (comprehensive setup guide for users)
+- Files modified:
+  - aerial-platform/package.json (added @supabase/supabase-js dependency)
+- **Learnings for future iterations:**
+  - Environment variables use NEXT_PUBLIC_ prefix for client-side access
+  - Supabase client should validate env vars on initialization
+  - Connection test uses .from('_test') to verify database access
+  - .env.local is gitignored but .env.local.example is committed
+  - SETUP.md provides step-by-step guide for new developers
+  - All future service integrations (Mapbox, Stripe, etc.) have placeholders ready
+---
