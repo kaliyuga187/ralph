@@ -1,6 +1,8 @@
 ## Codebase Patterns
 
-(Patterns will be added as they are discovered during implementation)
+- Tailwind CSS 4.x requires @tailwindcss/postcss plugin (not the old tailwindcss plugin)
+- Use "use client" directive for components with hooks (useState, useEffect)
+- Custom colors defined in tailwind.config.ts: brand, success, urgent
 
 ---
 
@@ -24,4 +26,28 @@
   - Tailwind 4.x is being used (latest version)
   - Dev server starts on port 3000 by default
   - TypeScript strict mode is enabled
+---
+## 2026-01-24 07:18 - US-002
+- Created aggressive marketing landing page with conversion-focused design
+- Components built:
+  - Hero: Bold headline "Get 5 Local Bids in 24 Hours" with dual-path CTAs
+  - UrgencyBanner: Rotating urgency messages (5s interval)
+  - SocialProof: Animated counter showing 10,000+ jobs completed
+  - HowItWorks: Tabbed interface for client vs contractor workflows
+- Files created:
+  - aerial-platform/components/Hero.tsx
+  - aerial-platform/components/SocialProof.tsx
+  - aerial-platform/components/HowItWorks.tsx
+  - aerial-platform/components/UrgencyBanner.tsx
+- Files modified:
+  - aerial-platform/app/page.tsx (integrated all marketing components)
+  - aerial-platform/postcss.config.mjs (fixed for Tailwind 4.x)
+  - aerial-platform/package.json (added @tailwindcss/postcss)
+- **Learnings for future iterations:**
+  - Tailwind CSS 4.x requires @tailwindcss/postcss instead of tailwindcss in PostCSS config
+  - Client components need "use client" directive for React hooks
+  - Animated counters use setInterval with cleanup in useEffect
+  - Tab switchers use conditional rendering based on state
+  - All components are fully responsive (mobile-first design)
+  - Production build passes all checks
 ---
