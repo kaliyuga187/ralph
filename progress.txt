@@ -51,3 +51,29 @@
   - All components are fully responsive (mobile-first design)
   - Production build passes all checks
 ---
+## 2026-01-24 07:23 - US-003
+- Added comprehensive trust signals and conversion elements to landing page
+- Components created:
+  - Testimonials: Auto-rotating carousel (7s interval) with 5-star ratings and photos
+  - FeaturedContractors: Grid of 4 top-rated contractors with stats
+  - PressLogos: "As Seen In" section with 6 major publications
+  - LiveActivityFeed: Bottom-right notification showing live platform activity (6s rotation)
+  - StickyBottomCTA: Mobile-only sticky bar that appears after 300px scroll
+  - ExitIntentPopup: Exit-intent modal offering $50 credit (triggers on mouse leave from top)
+- Files created:
+  - aerial-platform/components/Testimonials.tsx
+  - aerial-platform/components/FeaturedContractors.tsx
+  - aerial-platform/components/PressLogos.tsx
+  - aerial-platform/components/LiveActivityFeed.tsx
+  - aerial-platform/components/StickyBottomCTA.tsx
+  - aerial-platform/components/ExitIntentPopup.tsx
+- Files modified:
+  - aerial-platform/app/page.tsx (integrated all trust signal components)
+- **Learnings for future iterations:**
+  - Exit-intent triggers use mouseleave event with clientY <= 0
+  - Sticky CTAs use scroll event listeners with visibility threshold
+  - Fixed positioning requires z-index management (z-40, z-50)
+  - Mobile-only components use md:hidden class
+  - Carousel indicators use transition-all for smooth width changes
+  - All intervals properly cleaned up in useEffect return
+---
