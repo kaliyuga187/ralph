@@ -146,3 +146,28 @@
   - Role-based redirects prevent users from accessing wrong dashboards
   - Loading states prevent flash of wrong content during auth checks
 ---
+## 2026-01-24 07:45 - US-007 & US-008
+- Built onboarding flows for both user types (client and trade)
+- Files created:
+  - aerial-platform/app/onboarding/client/page.tsx
+  - aerial-platform/app/onboarding/trade/page.tsx
+- US-007 (Client Onboarding):
+  - Two-step form: personal info → property address
+  - Progress bar showing "1 of 2 steps"
+  - Skip option with urgency messaging
+  - Validates auth and role before showing
+- US-008 (Trade Onboarding):
+  - Business profile form with multiple sections
+  - Multi-select service picker (checkbox style)
+  - ZIP code + service radius slider (5-50 miles)
+  - Phone number input
+  - Creates trade_profiles record on submit
+  - Gamification messaging: "Complete profile to unlock leads!"
+- **Learnings for future iterations:**
+  - Onboarding flows redirect based on role after signup
+  - Skip functionality allows users to complete later
+  - Service radius uses range input with visual feedback
+  - Multi-select UI uses toggle buttons instead of checkboxes
+  - Trade profile creation happens in onboarding, not signup
+  - Auth checks prevent wrong user types from accessing onboarding
+---
