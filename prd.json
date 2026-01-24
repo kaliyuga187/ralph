@@ -1,0 +1,843 @@
+{
+  "project": "Aerial Estimate Platform",
+  "branchName": "ralph/aerial-marketplace-mvp",
+  "description": "Two-sided marketplace connecting homeowners with local contractors using aerial imagery for accurate estimates. Aggressive marketing & engagement design with web + mobile apps.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Initialize Next.js project with Tailwind CSS",
+      "description": "As a developer, I need a modern React framework with styling ready so I can build the marketing site and web app.",
+      "acceptanceCriteria": [
+        "Next.js 14+ with App Router initialized",
+        "Tailwind CSS configured with custom colors (brand: blue-600, success: green-500, urgent: red-500)",
+        "TypeScript enabled",
+        "Basic folder structure: /app, /components, /lib, /types",
+        "Typecheck passes",
+        "Dev server runs successfully"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-002",
+      "title": "Create aggressive marketing landing page",
+      "description": "As a visitor, I want to immediately understand the value proposition and be compelled to sign up.",
+      "acceptanceCriteria": [
+        "Hero section with bold headline: 'Get 5 Local Bids in 24 Hours' + CTA button",
+        "Dual-path CTAs: 'I Need Work Done' vs 'I'm a Contractor'",
+        "Social proof section: '10,000+ jobs completed' (with animated counter)",
+        "How It Works: 3-step visual process for each user type",
+        "Urgency banner: 'Limited spots for contractors in your area' (rotating)",
+        "Fully responsive design (mobile-first)",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Add trust signals and conversion elements",
+      "description": "As a visitor, I need to trust the platform before signing up.",
+      "acceptanceCriteria": [
+        "Testimonials carousel with photos and star ratings",
+        "Featured contractors section with profile pictures",
+        "Press logos (even if placeholder): 'As Seen In...'",
+        "Live activity feed: 'John in Brooklyn just posted a roofing job' (simulated initially)",
+        "Sticky bottom CTA bar on mobile: 'Get Started Free'",
+        "Exit-intent popup: 'Wait! Get $50 off your first job'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Setup Supabase project and environment variables",
+      "description": "As a developer, I need backend infrastructure configured so I can build auth and database features.",
+      "acceptanceCriteria": [
+        "Supabase project created (or use existing)",
+        ".env.local with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "Supabase client initialized in /lib/supabase.ts",
+        "@supabase/supabase-js installed",
+        "Connection test passes (simple query)",
+        "Typecheck passes"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Create database schema for users with roles",
+      "description": "As a developer, I need to store user data with client vs trade roles.",
+      "acceptanceCriteria": [
+        "Table: profiles (id, email, role: 'client' | 'trade', created_at)",
+        "Table: trade_profiles (user_id, business_name, services[], service_radius_miles, zip_code, rating, total_jobs)",
+        "RLS policies: users see only their own profile",
+        "Migration file created and applied",
+        "Typecheck passes"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Implement Supabase Auth with role selection",
+      "description": "As a user, I want to sign up and choose if I'm a client or contractor.",
+      "acceptanceCriteria": [
+        "Sign-up flow with email + password (or magic link)",
+        "Role selection step: 'I need work done' vs 'I'm a contractor'",
+        "Auto-create profile record with selected role",
+        "Login page with 'Remember me' checkbox",
+        "Session persistence across page reloads",
+        "Redirect to appropriate dashboard based on role",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Create client onboarding: complete profile",
+      "description": "As a new client, I want to add my property details quickly.",
+      "acceptanceCriteria": [
+        "Onboarding modal: Name, Phone, Property Address (autocomplete)",
+        "Progress bar showing '1 of 2 steps'",
+        "Skip option (but show urgency: 'Complete now to get faster bids!')",
+        "Save to profiles table",
+        "Redirect to 'Post a Job' on completion",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-008",
+      "title": "Create trade onboarding: service area setup",
+      "description": "As a new contractor, I want to set my service area and specialties.",
+      "acceptanceCriteria": [
+        "Onboarding form: Business Name, Phone, Services (multi-select: roofing, solar, landscaping, etc.)",
+        "Service area: ZIP code + radius slider (5-50 miles)",
+        "Upload profile photo (Supabase Storage)",
+        "Save to trade_profiles table",
+        "Show gamification preview: 'Complete profile to unlock leads!'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 8,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-009",
+      "title": "Setup Mapbox integration",
+      "description": "As a developer, I need Mapbox configured for aerial imagery.",
+      "acceptanceCriteria": [
+        "Mapbox account created (or use existing)",
+        "NEXT_PUBLIC_MAPBOX_TOKEN in .env.local",
+        "mapbox-gl installed",
+        "Basic map component renders in test page",
+        "Satellite imagery layer enabled",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 9,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-010",
+      "title": "Create job posting schema",
+      "description": "As a developer, I need to store job listings with location data.",
+      "acceptanceCriteria": [
+        "Table: jobs (id, client_id, title, description, address, lat, lng, service_type, status: 'open' | 'in_progress' | 'completed', budget_min, budget_max, created_at)",
+        "Table: job_images (id, job_id, image_url, is_aerial)",
+        "RLS policies: clients see their own jobs, trades see open jobs in their area",
+        "Indexes on lat/lng for geo queries",
+        "Migration applied",
+        "Typecheck passes"
+      ],
+      "priority": 10,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-011",
+      "title": "Build job posting form with aerial imagery",
+      "description": "As a client, I want to post a job and see my property from above.",
+      "acceptanceCriteria": [
+        "Multi-step form: 1) Job details, 2) View property, 3) Review",
+        "Step 1: Title, Service Type dropdown, Description textarea, Budget range",
+        "Step 2: Address autocomplete → centers Mapbox on property with satellite view",
+        "Drawing tools: measure area, add markers (optional)",
+        "Upload additional photos from device",
+        "Aggressive CTA: 'Post Job & Get Bids in 24 Hours'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 11,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-012",
+      "title": "Implement geo-matching for local jobs",
+      "description": "As a contractor, I want to see only jobs within my service area.",
+      "acceptanceCriteria": [
+        "Postgres function: calculate_distance(lat1, lng1, lat2, lng2) using Haversine formula",
+        "API route: /api/jobs/nearby?user_id=X returns jobs within trade's radius",
+        "Filter by service_type matching trade's services",
+        "Sort by distance (closest first)",
+        "Typecheck passes",
+        "API returns correct data (test with sample records)"
+      ],
+      "priority": 12,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-013",
+      "title": "Create trade dashboard: browse local jobs",
+      "description": "As a contractor, I want to see available jobs near me.",
+      "acceptanceCriteria": [
+        "Dashboard shows list of nearby jobs (title, distance, budget, time posted)",
+        "Filter by service type",
+        "Sort by: Newest, Closest, Highest Budget",
+        "Each job card has 'View Details' button",
+        "Empty state: 'No jobs nearby - expand your service area!'",
+        "Badge showing distance: '2.3 miles away'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 13,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-014",
+      "title": "Create bidding system schema",
+      "description": "As a developer, I need to store bids from trades to clients.",
+      "acceptanceCriteria": [
+        "Table: bids (id, job_id, trade_id, amount, message, status: 'pending' | 'accepted' | 'rejected', created_at)",
+        "RLS policies: clients see bids on their jobs, trades see their own bids",
+        "Constraint: one bid per trade per job",
+        "Migration applied",
+        "Typecheck passes"
+      ],
+      "priority": 14,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-015",
+      "title": "Build bid submission form",
+      "description": "As a contractor, I want to submit a bid after viewing aerial imagery.",
+      "acceptanceCriteria": [
+        "Job detail page shows aerial imagery + job description",
+        "Bid form: Estimate amount ($), Personal message, Estimated timeline",
+        "Show aerial map with measurement tools",
+        "Aggressive CTA: 'Submit Bid Now - Beat the Competition!'",
+        "Success toast: 'Bid submitted! We'll notify you if accepted'",
+        "Disable submit if already bid on this job",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 15,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-016",
+      "title": "Create client dashboard: view bids",
+      "description": "As a client, I want to compare bids from multiple contractors.",
+      "acceptanceCriteria": [
+        "My Jobs page: list of posted jobs with bid count",
+        "Job detail page shows all bids sorted by amount (lowest first)",
+        "Each bid card: Trade name, rating, amount, message, 'Accept' button",
+        "Show trade profile link (business_name, total_jobs, rating)",
+        "Urgency indicator: 'X new bids!' badge",
+        "Empty state: 'No bids yet - average wait time is 6 hours'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 16,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-017",
+      "title": "Implement bid acceptance flow",
+      "description": "As a client, I want to accept a bid and start working with a contractor.",
+      "acceptanceCriteria": [
+        "Accept button shows confirmation modal: 'Accept bid for $X from [Trade]?'",
+        "On confirm: update bid status to 'accepted', job status to 'in_progress'",
+        "Reject other bids automatically",
+        "Send notification to trade (email + in-app for now)",
+        "Redirect to job detail showing accepted bid",
+        "Show 'Contact Contractor' section with phone/email",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 17,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-018",
+      "title": "Add basic messaging system",
+      "description": "As a client and trade, I want to communicate about the job.",
+      "acceptanceCriteria": [
+        "Table: messages (id, job_id, sender_id, receiver_id, content, created_at)",
+        "RLS policies: participants can read/write messages for their jobs",
+        "Message thread UI on job detail page",
+        "Real-time updates using Supabase Realtime (subscriptions)",
+        "Show unread count badge",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 18,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-019",
+      "title": "Create notification system",
+      "description": "As a user, I want to be notified of important events (new bids, messages, job updates).",
+      "acceptanceCriteria": [
+        "Table: notifications (id, user_id, type, title, message, read, created_at)",
+        "Notification bell icon in header with unread count",
+        "Dropdown showing recent notifications",
+        "Auto-create notifications on: new bid, bid accepted, new message",
+        "Mark as read on click",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 19,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-020",
+      "title": "Build review and rating system",
+      "description": "As a client, I want to rate contractors after job completion to build trust.",
+      "acceptanceCriteria": [
+        "Table: reviews (id, job_id, reviewer_id, reviewee_id, rating: 1-5, comment, created_at)",
+        "Job completion flow: client marks job as 'completed' → prompted to leave review",
+        "5-star rating selector + optional text comment",
+        "Update trade_profiles.rating (average of all reviews)",
+        "Show reviews on trade profile page",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 20,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-021",
+      "title": "Add gamification for trades: leaderboard",
+      "description": "As a contractor, I want to see how I rank against others to stay motivated.",
+      "acceptanceCriteria": [
+        "Leaderboard page: Top 10 trades by total_jobs and average rating",
+        "Show badges: 'Top Rated', '50+ Jobs', 'Quick Responder'",
+        "User's own rank highlighted",
+        "Filter by service type",
+        "Aggressive messaging: 'You're #5 in your area - 3 more jobs to reach #3!'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 21,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-022",
+      "title": "Implement referral system",
+      "description": "As a user, I want to refer friends and get rewards for viral growth.",
+      "acceptanceCriteria": [
+        "Table: referrals (id, referrer_id, referred_email, status: 'pending' | 'completed', created_at)",
+        "Referral page: unique link /signup?ref=[user_id]",
+        "Copy link button with toast: 'Link copied! Share it to earn $25 per signup'",
+        "Track referrals on signup",
+        "Show referral count on dashboard: 'You've referred 3 users - earn $75!'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 22,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-023",
+      "title": "Add email notifications with SendGrid",
+      "description": "As a user, I want to receive email alerts for critical events.",
+      "acceptanceCriteria": [
+        "SendGrid API integrated (or Supabase Edge Functions with email)",
+        "SENDGRID_API_KEY in .env.local",
+        "Email templates: New bid, Bid accepted, New message",
+        "Send email on event triggers (async)",
+        "Unsubscribe link in footer",
+        "Typecheck passes",
+        "Test email sends successfully"
+      ],
+      "priority": 23,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-024",
+      "title": "Create trade profile page (public)",
+      "description": "As a client, I want to view a contractor's full profile before accepting a bid.",
+      "acceptanceCriteria": [
+        "Public profile route: /trade/[id]",
+        "Show: Business name, photo, services, rating, total jobs, service area",
+        "List of completed jobs (if client allows public visibility)",
+        "Reviews section with pagination",
+        "CTA: 'Invite to Bid on My Job' (if client viewing)",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 24,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-025",
+      "title": "Add job search and filtering",
+      "description": "As a contractor, I want to filter jobs by budget, distance, and service type.",
+      "acceptanceCriteria": [
+        "Filter panel: Service type, Max distance, Budget range",
+        "Search by keyword in title/description",
+        "Filters persist in URL params",
+        "Update job list dynamically (no page reload)",
+        "Show active filters as removable chips",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 25,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-026",
+      "title": "Setup Stripe for payment processing",
+      "description": "As a developer, I need payment infrastructure for transaction fees.",
+      "acceptanceCriteria": [
+        "Stripe account created (test mode)",
+        "STRIPE_SECRET_KEY and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY in .env.local",
+        "@stripe/stripe-js installed",
+        "Stripe Checkout session created successfully (test)",
+        "Typecheck passes"
+      ],
+      "priority": 26,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-027",
+      "title": "Implement platform transaction fee",
+      "description": "As a platform, I want to charge a 10% fee on completed jobs.",
+      "acceptanceCriteria": [
+        "On bid acceptance, create Stripe Checkout session for client to pay",
+        "Amount = bid amount + 10% platform fee",
+        "Redirect to Stripe Checkout",
+        "Webhook handler: /api/webhooks/stripe to confirm payment",
+        "Update job status to 'paid' and release funds to trade (simulate for now)",
+        "Typecheck passes",
+        "Test payment flow in Stripe test mode"
+      ],
+      "priority": 27,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-028",
+      "title": "Create admin dashboard: basic metrics",
+      "description": "As an admin, I want to see platform health metrics.",
+      "acceptanceCriteria": [
+        "Protected route: /admin (check if user has admin role)",
+        "Show: Total users, Total jobs, Total bids, Total revenue",
+        "Chart: Jobs posted over time (last 30 days)",
+        "List of recent transactions",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 28,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-029",
+      "title": "Add SEO optimization for marketing pages",
+      "description": "As a marketer, I need the site to rank well for local contractor searches.",
+      "acceptanceCriteria": [
+        "Next.js metadata API: unique title, description per page",
+        "Landing page: 'Find Local Contractors | Aerial Estimate Platform'",
+        "JSON-LD structured data for LocalBusiness",
+        "Sitemap.xml generated",
+        "robots.txt allows crawling",
+        "Open Graph images for social sharing",
+        "Typecheck passes"
+      ],
+      "priority": 29,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-030",
+      "title": "Create FAQ page with conversion focus",
+      "description": "As a visitor, I want answers to common questions to reduce signup friction.",
+      "acceptanceCriteria": [
+        "FAQ page route: /faq",
+        "Accordion-style Q&A (expand/collapse)",
+        "Sections: For Clients, For Contractors, Pricing, Safety",
+        "Aggressive CTAs between sections: 'Ready to try? Sign up free'",
+        "Schema markup for FAQ (Google rich results)",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 30,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-031",
+      "title": "Add pricing page with urgency tactics",
+      "description": "As a visitor, I want to understand costs before signing up.",
+      "acceptanceCriteria": [
+        "Pricing page route: /pricing",
+        "For clients: 'Free to post jobs, 10% fee on completed work'",
+        "For trades: 'Free to bid, only pay when you get hired'",
+        "Comparison table: Free vs Premium (Premium = higher placement in search)",
+        "Urgency: 'Limited time: First 100 contractors get Premium free for 3 months'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 31,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-032",
+      "title": "Initialize React Native Expo project",
+      "description": "As a developer, I need a mobile app framework for iOS and Android.",
+      "acceptanceCriteria": [
+        "Expo project created in /mobile folder",
+        "TypeScript enabled",
+        "React Navigation installed and configured",
+        "Expo Go app shows 'Hello World' on device/simulator",
+        "Typecheck passes in mobile folder"
+      ],
+      "priority": 32,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-033",
+      "title": "Setup Supabase auth in mobile app",
+      "description": "As a mobile user, I want to log in with the same credentials as the web app.",
+      "acceptanceCriteria": [
+        "@supabase/supabase-js installed in mobile",
+        "Supabase client configured with same credentials",
+        "Login screen with email + password",
+        "Session persisted using AsyncStorage",
+        "Auto-navigate to home on successful login",
+        "Typecheck passes",
+        "Test on iOS simulator or Android emulator"
+      ],
+      "priority": 33,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-034",
+      "title": "Build mobile job browsing (for trades)",
+      "description": "As a contractor on mobile, I want to browse nearby jobs.",
+      "acceptanceCriteria": [
+        "Home screen shows list of nearby jobs (same data as web)",
+        "Pull-to-refresh to reload jobs",
+        "Infinite scroll for pagination",
+        "Job card shows: title, distance, budget",
+        "Tap to view job details",
+        "Typecheck passes",
+        "Test on device/simulator"
+      ],
+      "priority": 34,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-035",
+      "title": "Add Mapbox to mobile app",
+      "description": "As a mobile user, I want to see aerial imagery of properties.",
+      "acceptanceCriteria": [
+        "react-native-mapbox-gl installed",
+        "Mapbox token configured",
+        "Job detail screen shows satellite map centered on property",
+        "Pinch to zoom, pan to explore",
+        "Typecheck passes",
+        "Test on device/simulator"
+      ],
+      "priority": 35,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-036",
+      "title": "Implement mobile bid submission",
+      "description": "As a contractor on mobile, I want to submit bids quickly.",
+      "acceptanceCriteria": [
+        "Bid form on job detail screen",
+        "Input: Amount, Message, Timeline",
+        "Submit button sends bid to API",
+        "Success feedback with haptic vibration",
+        "Navigate back to job list",
+        "Typecheck passes",
+        "Test on device/simulator"
+      ],
+      "priority": 36,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-037",
+      "title": "Add push notifications (Expo)",
+      "description": "As a mobile user, I want instant alerts for new bids and messages.",
+      "acceptanceCriteria": [
+        "Expo push notification service configured",
+        "Request notification permissions on app launch",
+        "Store push token in profiles table",
+        "Send test notification on new bid",
+        "Tapping notification opens relevant screen",
+        "Typecheck passes",
+        "Test on physical device (push doesn't work in simulator)"
+      ],
+      "priority": 37,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-038",
+      "title": "Build mobile client job posting",
+      "description": "As a client on mobile, I want to post jobs with photos from my camera.",
+      "acceptanceCriteria": [
+        "Job posting form (same fields as web)",
+        "Camera integration: take photo or select from gallery",
+        "Upload to Supabase Storage",
+        "Show photo preview before submission",
+        "Submit creates job record",
+        "Typecheck passes",
+        "Test on device with camera access"
+      ],
+      "priority": 38,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-039",
+      "title": "Add mobile messaging with real-time updates",
+      "description": "As a mobile user, I want to chat with contractors/clients.",
+      "acceptanceCriteria": [
+        "Message thread screen (same as web)",
+        "Supabase Realtime subscription for new messages",
+        "Send message input with send button",
+        "Auto-scroll to latest message",
+        "Show typing indicator (optional)",
+        "Typecheck passes",
+        "Test on device with two accounts"
+      ],
+      "priority": 39,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-040",
+      "title": "Create mobile trade profile and settings",
+      "description": "As a contractor on mobile, I want to update my profile and settings.",
+      "acceptanceCriteria": [
+        "Profile tab: view and edit business name, services, service area",
+        "Upload profile photo from camera/gallery",
+        "Settings: notification preferences, logout button",
+        "Save changes to Supabase",
+        "Typecheck passes",
+        "Test on device"
+      ],
+      "priority": 40,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-041",
+      "title": "Setup Vercel deployment for web app",
+      "description": "As a developer, I need the web app deployed to production.",
+      "acceptanceCriteria": [
+        "Vercel project connected to GitHub repo",
+        "Environment variables configured in Vercel dashboard",
+        "Auto-deploy on push to main branch",
+        "Custom domain configured (if available, else use vercel.app)",
+        "Build succeeds and site is live",
+        "Test production URL loads correctly"
+      ],
+      "priority": 41,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-042",
+      "title": "Prepare iOS app for TestFlight",
+      "description": "As a developer, I need to submit the iOS app for beta testing.",
+      "acceptanceCriteria": [
+        "Expo build configured for iOS (eas.json)",
+        "App icon and splash screen added",
+        "Bundle identifier and app name set",
+        "Build successfully with EAS Build: eas build --platform ios",
+        "Upload to App Store Connect",
+        "TestFlight build available for testing"
+      ],
+      "priority": 42,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-043",
+      "title": "Prepare Android app for Play Store",
+      "description": "As a developer, I need to submit the Android app for beta testing.",
+      "acceptanceCriteria": [
+        "Expo build configured for Android (eas.json)",
+        "App icon and splash screen added",
+        "Package name set",
+        "Build successfully with EAS Build: eas build --platform android",
+        "Upload to Google Play Console",
+        "Internal testing track available"
+      ],
+      "priority": 43,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-044",
+      "title": "Create onboarding tutorial for new users",
+      "description": "As a new user, I want a quick tutorial explaining how to use the platform.",
+      "acceptanceCriteria": [
+        "First-time user sees 3-screen walkthrough",
+        "Screens: 1) Welcome, 2) How to post/bid, 3) Get started",
+        "Skip button on each screen",
+        "Store tutorial_completed flag in profile",
+        "Never show again after completion",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 44,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-045",
+      "title": "Add analytics tracking with PostHog",
+      "description": "As a product owner, I want to track user behavior to optimize conversions.",
+      "acceptanceCriteria": [
+        "PostHog project created (or use Google Analytics)",
+        "NEXT_PUBLIC_POSTHOG_KEY in .env.local",
+        "Track events: signup, job_posted, bid_submitted, bid_accepted",
+        "Page view tracking on all routes",
+        "Funnel analysis: landing → signup → post job → accept bid",
+        "Typecheck passes"
+      ],
+      "priority": 45,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-046",
+      "title": "Implement A/B testing for CTAs",
+      "description": "As a growth marketer, I want to test different CTA copy to maximize conversions.",
+      "acceptanceCriteria": [
+        "Use PostHog feature flags (or custom randomization)",
+        "Variant A: 'Get Started Free' vs Variant B: 'Post Your Job Now'",
+        "Randomly assign users to variant on landing page",
+        "Track conversion rate per variant",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 46,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-047",
+      "title": "Create blog for SEO and content marketing",
+      "description": "As a marketer, I want to publish articles to attract organic traffic.",
+      "acceptanceCriteria": [
+        "Blog route: /blog",
+        "List of articles (use MDX or fetch from CMS)",
+        "Article page: /blog/[slug] with full content",
+        "Related articles section at bottom",
+        "Social share buttons",
+        "SEO metadata per article",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 47,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-048",
+      "title": "Add social proof: live activity ticker",
+      "description": "As a visitor, I want to see recent activity to build trust.",
+      "acceptanceCriteria": [
+        "Sticky bottom banner: 'Sarah in Austin just hired a roofer'",
+        "Rotate messages every 5 seconds (fade animation)",
+        "Pull real data from jobs/bids table (anonymize names)",
+        "Only show if > 10 recent jobs to avoid looking empty",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 48,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-049",
+      "title": "Implement urgency: limited contractor slots",
+      "description": "As a visitor, I want to see urgency messaging to encourage immediate signup.",
+      "acceptanceCriteria": [
+        "Banner on trade signup: 'Only 3 spots left in your area this month!'",
+        "Use Supabase function to count trades in ZIP code",
+        "Show countdown if < 5 slots remaining (even if simulated initially)",
+        "Update daily (or use static messaging with rotating copy)",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 49,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-050",
+      "title": "Add environmental impact tracker",
+      "description": "As a user, I want to see how using local trades reduces carbon emissions.",
+      "acceptanceCriteria": [
+        "Dashboard widget: 'You've saved X miles of contractor travel'",
+        "Calculate based on distance of accepted jobs",
+        "Show CO2 saved: miles * 0.89 lbs CO2/mile (avg vehicle)",
+        "Gamification: 'You've saved the equivalent of 5 trees!'",
+        "Typecheck passes",
+        "Verify in browser using dev-browser skill"
+      ],
+      "priority": 50,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
