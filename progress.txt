@@ -1,0 +1,27 @@
+## Codebase Patterns
+
+(Patterns will be added as they are discovered during implementation)
+
+---
+
+## 2026-01-24 07:15 - US-001
+- Implemented Next.js 14+ with App Router and TypeScript
+- Configured Tailwind CSS with custom brand colors (brand, success, urgent)
+- Created folder structure: /app, /components, /lib, /types
+- Set up basic layout and home page
+- Files created:
+  - aerial-platform/package.json (with Next.js scripts)
+  - aerial-platform/tsconfig.json
+  - aerial-platform/tailwind.config.ts
+  - aerial-platform/postcss.config.mjs
+  - aerial-platform/next.config.ts
+  - aerial-platform/app/layout.tsx
+  - aerial-platform/app/page.tsx
+  - aerial-platform/app/globals.css
+  - aerial-platform/.gitignore
+- **Learnings for future iterations:**
+  - Next.js 16.1.4 automatically updates tsconfig.json on first dev run
+  - Tailwind 4.x is being used (latest version)
+  - Dev server starts on port 3000 by default
+  - TypeScript strict mode is enabled
+---
