@@ -14,12 +14,18 @@ export default function Hero() {
 
           {/* Dual-path CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="w-full sm:w-auto bg-white text-brand-700 px-8 py-4 rounded-lg text-lg font-bold hover:bg-brand-50 transition-all transform hover:scale-105 shadow-xl">
+            <a
+              href="/signup"
+              className="w-full sm:w-auto bg-white text-brand-700 px-8 py-4 rounded-lg text-lg font-bold hover:bg-brand-50 transition-all transform hover:scale-105 shadow-xl text-center"
+            >
               I Need Work Done
-            </button>
-            <button className="w-full sm:w-auto bg-success-500 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-success-600 transition-all transform hover:scale-105 shadow-xl">
+            </a>
+            <a
+              href="/signup"
+              className="w-full sm:w-auto bg-success-500 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-success-600 transition-all transform hover:scale-105 shadow-xl text-center"
+            >
               I'm a Contractor
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -119,3 +119,30 @@
   - TypeScript types should match database schema exactly
   - Services stored as TEXT[] array for flexibility
 ---
+## 2026-01-24 07:39 - US-006
+- Implemented complete authentication system with role-based signup and login
+- Files created:
+  - aerial-platform/lib/auth.ts (auth helper functions)
+  - aerial-platform/app/signup/page.tsx (2-step signup with role selection)
+  - aerial-platform/app/login/page.tsx (login with remember me)
+  - aerial-platform/app/dashboard/client/page.tsx (client dashboard with auth check)
+  - aerial-platform/app/dashboard/trade/page.tsx (trade dashboard with auth check)
+- Files modified:
+  - aerial-platform/components/Hero.tsx (linked CTAs to signup page)
+- Features implemented:
+  - Two-step signup: role selection → credentials
+  - Auto-create profile record on signup
+  - Login with "Remember me" checkbox
+  - Role-based redirect (client → /dashboard/client, trade → /dashboard/trade)
+  - Session persistence across page reloads
+  - Protected dashboard routes with auth checks
+  - Logout functionality
+- **Learnings for future iterations:**
+  - Supabase auth.signUp() automatically creates auth.users record
+  - Must manually create profiles table record after signup
+  - Use auth.uid() to get current user ID in RLS policies
+  - Session persists in localStorage by default (Supabase handles this)
+  - Client-side auth checks use getCurrentUserProfile() from lib/auth.ts
+  - Role-based redirects prevent users from accessing wrong dashboards
+  - Loading states prevent flash of wrong content during auth checks
+---
