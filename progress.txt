@@ -171,3 +171,22 @@
   - Trade profile creation happens in onboarding, not signup
   - Auth checks prevent wrong user types from accessing onboarding
 ---
+## 2026-01-24 07:52 - US-009
+- Integrated Mapbox for aerial imagery visualization
+- Files created:
+  - aerial-platform/components/MapboxMap.tsx (reusable map component)
+  - aerial-platform/app/test-map/page.tsx (test page for verification)
+- Installed mapbox-gl package
+- Features:
+  - Satellite imagery with street overlay
+  - Navigation controls (zoom, rotate)
+  - Scale control (imperial units)
+  - Error handling for missing API token
+  - Graceful fallback UI when token not configured
+- **Learnings:**
+  - Mapbox requires "mapbox-gl/dist/mapbox-gl.css" import
+  - Use satellite-streets-v12 style for aerial imagery
+  - Map initialization should happen once in useEffect
+  - Cleanup map.remove() on component unmount to prevent memory leaks
+  - accessToken must be set before creating Map instance
+---
