@@ -277,3 +277,15 @@
   - line-clamp-2 truncates long text
   - animate-pulse for attention-grabbing elements
 ---
+## 2026-01-24 08:15 - US-017 to US-020
+- Completed core marketplace: bid acceptance, messaging, notifications, reviews
+- Files created:
+  - app/client/jobs/[id]/page.tsx (bid comparison and acceptance)
+  - supabase/migrations/004_messaging_notifications_reviews.sql
+- **Learnings:**
+  - Supabase nested selects: bids with trade_profiles via foreign key
+  - Window.confirm for destructive actions
+  - Trigger functions update related tables automatically
+  - Constraint ensures one review per job
+  - RLS policies can be public (SELECT USING true)
+---
