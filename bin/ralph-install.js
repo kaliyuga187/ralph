@@ -105,8 +105,10 @@ function install(withSpawner = false) {
     // Use platform-specific config directory
     let configDir;
     if (process.platform === 'win32') {
-      configDir = path.join(process.env.APPDATA || process.env.USERPROFILE, 'amp', 'skills');
+      // Windows: use AppData/Roaming/amp/skills
+      configDir = path.join(os.homedir(), 'AppData', 'Roaming', 'amp', 'skills');
     } else {
+      // Unix-like: use ~/.config/amp/skills
       configDir = path.join(os.homedir(), '.config', 'amp', 'skills');
     }
     
@@ -125,11 +127,12 @@ function install(withSpawner = false) {
   }
   
   // Create initial prd.json if it doesn't exist
+  // This will be populated with your PRD structure - see prd.json.example for format
   const prdJson = path.join(ralphDir, 'prd.json');
   if (!fs.existsSync(prdJson)) {
-    // Create empty JSON object instead of empty file
+    // Create minimal valid JSON as placeholder
     fs.writeFileSync(prdJson, '{}', 'utf8');
-    console.log('\n  ✓ Created empty prd.json');
+    console.log('\n  ✓ Created empty prd.json (populate from prd.json.example)');
   }
   
   // Create progress.txt if it doesn't exist
