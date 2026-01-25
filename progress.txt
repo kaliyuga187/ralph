@@ -260,3 +260,20 @@
   - Client-side filtering faster than re-querying for small datasets
   - Empty states improve UX when no results
 ---
+## 2026-01-24 08:10 - US-016 & US-017 (Partial)
+- Rebuilt client dashboard to show jobs and bid counts
+- Files modified:
+  - app/dashboard/client/page.tsx (complete rebuild)
+- US-016 Features:
+  - List all client's posted jobs
+  - Show bid count per job with "NEW" badge
+  - Status badges (open, in_progress, completed)
+  - "Post New Job" CTA
+  - Empty state with call-to-action
+  - Job cards with all key info
+- US-017: Bid acceptance flow needs separate detail page (next)
+- **Learnings:**
+  - Supabase aggregate queries: bids(count)
+  - line-clamp-2 truncates long text
+  - animate-pulse for attention-grabbing elements
+---
