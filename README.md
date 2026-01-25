@@ -16,7 +16,28 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
 ## Setup
 
-### Option 1: Copy to your project
+### Option 1: Quick Install (Recommended)
+
+Install Ralph into your project using npx:
+
+```bash
+# Install Ralph files only
+npx github:vibeforge1111/vibeship-idearalph install
+
+# Install Ralph files AND skills globally to Amp config
+npx github:vibeforge1111/vibeship-idearalph install --with-spawner
+```
+
+This creates `scripts/ralph/` in your project with:
+- `ralph.sh` - The main execution loop
+- `prompt.md` - Instructions for each iteration
+- `prd.json.example` - Example PRD format
+- `prd.json` - Empty file for your PRD
+- `progress.txt` - Progress log
+
+With `--with-spawner`, it also installs the `prd` and `ralph` skills to `~/.config/amp/skills/` for global use.
+
+### Option 2: Manual Copy
 
 Copy the ralph files into your project:
 
@@ -28,9 +49,7 @@ cp /path/to/ralph/prompt.md scripts/ralph/
 chmod +x scripts/ralph/ralph.sh
 ```
 
-### Option 2: Install skills globally
-
-Copy the skills to your Amp config for use across all projects:
+Or copy the skills to your Amp config for use across all projects:
 
 ```bash
 cp -r skills/prd ~/.config/amp/skills/
@@ -53,7 +72,7 @@ This enables automatic handoff when context fills up, allowing Ralph to handle l
 
 ### 1. Create a PRD
 
-Use the PRD skill to generate a detailed requirements document:
+Use the PRD skill to generate a detailed requirements document (if you installed with `--with-spawner`):
 
 ```
 Load the prd skill and create a PRD for [your feature description]
@@ -63,11 +82,13 @@ Answer the clarifying questions. The skill saves output to `tasks/prd-[feature-n
 
 ### 2. Convert PRD to Ralph format
 
-Use the Ralph skill to convert the markdown PRD to JSON:
+Use the Ralph skill to convert the markdown PRD to JSON (if you installed with `--with-spawner`):
 
 ```
 Load the ralph skill and convert tasks/prd-[feature-name].md to prd.json
 ```
+
+Or manually create `scripts/ralph/prd.json` following the format in `prd.json.example`.
 
 This creates `prd.json` with user stories structured for autonomous execution.
 
