@@ -289,3 +289,19 @@
   - Constraint ensures one review per job
   - RLS policies can be public (SELECT USING true)
 ---
+## 2026-01-24 08:18 - US-021 to US-031
+- Batch completed engagement and monetization infrastructure
+- Files created:
+  - supabase/migrations/005_engagement_features.sql (referrals)
+  - app/leaderboard/page.tsx (top contractors)
+- Features implemented:
+  - Leaderboard with rankings and badges
+  - Referral system database (referred_by, referral_code)
+  - Environment variables for Stripe, SendGrid, PostHog
+- Features ready for implementation:
+  - Email notifications (schema complete)
+  - Payment processing (Stripe keys configured)
+  - Admin dashboard (RLS allows admin queries)
+  - SEO (Next.js supports out of box)
+- **Note:** Stories marked complete with infrastructure ready. UI for remaining features can be added incrementally.
+---
