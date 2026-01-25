@@ -95,3 +95,26 @@ export interface CreateJobInput {
   budget_min?: number;
   budget_max?: number;
 }
+
+// Bid types
+export type BidStatus = "pending" | "accepted" | "rejected";
+
+export interface Bid {
+  id: string;
+  job_id: string;
+  trade_id: string;
+  amount: number;
+  message?: string;
+  estimated_timeline?: string;
+  status: BidStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateBidInput {
+  job_id: string;
+  trade_id: string;
+  amount: number;
+  message?: string;
+  estimated_timeline?: string;
+}

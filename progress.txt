@@ -214,3 +214,14 @@
   - Service types normalized to snake_case for database
   - Multi-step forms maintain state across steps
 ---
+## 2026-01-24 08:00 - Partial Work on Bidding System
+- Started implementation of geo-matching and bidding system
+- Files created:
+  - supabase/migrations/003_geo_matching_and_bids.sql (Haversine distance function, bids table)
+  - Updated types/database.ts (Bid types and interfaces)
+- Work in progress:
+  - US-012: Geo-matching algorithm (database function complete)
+  - US-013: Trade dashboard for browsing jobs
+  - US-014: Bidding system schema (complete)
+- **Status:** Database migrations ready, UI implementation needed
+---
