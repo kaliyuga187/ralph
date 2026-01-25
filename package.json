@@ -1,0 +1,30 @@
+{
+  "name": "@vibeforge1111/vibeship-idearalph",
+  "version": "1.0.0",
+  "description": "Ralph - Autonomous AI agent loop for iterative development",
+  "main": "index.js",
+  "bin": {
+    "ralph": "./bin/ralph-install.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ralph",
+    "ai",
+    "agent",
+    "autonomous",
+    "amp",
+    "iteration"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vibeforge1111/vibeship-idearalph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vibeforge1111/vibeship-idearalph/issues"
+  },
+  "homepage": "https://github.com/vibeforge1111/vibeship-idearalph#readme"
+}
