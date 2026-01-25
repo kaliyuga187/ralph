@@ -190,3 +190,27 @@
   - Cleanup map.remove() on component unmount to prevent memory leaks
   - accessToken must be set before creating Map instance
 ---
+## 2026-01-24 07:56 - US-010 & US-011
+- Built complete job posting system with aerial imagery integration
+- Files created:
+  - supabase/migrations/002_create_jobs.sql (jobs and job_images tables)
+  - app/jobs/new/page.tsx (3-step job posting form)
+  - Updated types/database.ts (Job, JobImage, CreateJobInput types)
+- US-010 (Job Schema):
+  - jobs table with lat/lng for geo-queries
+  - job_images table for property photos
+  - RLS policies: clients own jobs, trades view in service area
+  - Indexes on location, status, service_type for performance
+- US-011 (Job Posting Form):
+  - 3-step wizard: details → location/map → review
+  - Mapbox integration showing property aerial view
+  - Budget range (optional)
+  - Service type dropdown
+  - Progress indicator
+  - Conversion messaging: "Get bids in 24 hours!"
+- **Learnings:**
+  - Lat/lng stored as DECIMAL(10,8) and DECIMAL(11,8)
+  - Geo-matching will use these coordinates (US-012)
+  - Service types normalized to snake_case for database
+  - Multi-step forms maintain state across steps
+---
