@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const { execSync } = require('child_process');
 
 const args = process.argv.slice(2);
@@ -20,30 +21,40 @@ const SKILLS_DIRS = [
 ];
 
 function copyFile(src, dest) {
-  const destDir = path.dirname(dest);
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true });
+  try {
+    const destDir = path.dirname(dest);
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir, { recursive: true });
+    }
+    fs.copyFileSync(src, dest);
+    console.log(`  ✓ Copied ${path.basename(dest)}`);
+  } catch (err) {
+    console.error(`  ✗ Failed to copy ${path.basename(dest)}: ${err.message}`);
+    throw err;
   }
-  fs.copyFileSync(src, dest);
-  console.log(`  ✓ Copied ${path.basename(dest)}`);
 }
 
 function copyDirectory(src, dest) {
-  if (!fs.existsSync(dest)) {
-    fs.mkdirSync(dest, { recursive: true });
-  }
-  
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-  
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-    
-    if (entry.isDirectory()) {
-      copyDirectory(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
+  try {
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
     }
+    
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    
+    for (const entry of entries) {
+      const srcPath = path.join(src, entry.name);
+      const destPath = path.join(dest, entry.name);
+      
+      if (entry.isDirectory()) {
+        copyDirectory(srcPath, destPath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  } catch (err) {
+    console.error(`  ✗ Failed to copy directory ${path.basename(src)}: ${err.message}`);
+    throw err;
   }
 }
 
@@ -83,18 +94,26 @@ function install(withSpawner = false) {
       console.log('  ✓ Made ralph.sh executable');
     } catch (err) {
       console.warn('  ⚠ Could not make ralph.sh executable:', err.message);
+      console.warn('    You may need to run: chmod +x scripts/ralph/ralph.sh');
     }
   }
   
   // Copy skills to Amp config if --with-spawner flag is set
   if (withSpawner) {
     console.log('\n📦 Installing skills to Amp config...');
-    const ampConfigDir = path.join(process.env.HOME || process.env.USERPROFILE, '.config', 'amp', 'skills');
+    
+    // Use platform-specific config directory
+    let configDir;
+    if (process.platform === 'win32') {
+      configDir = path.join(process.env.APPDATA || process.env.USERPROFILE, 'amp', 'skills');
+    } else {
+      configDir = path.join(os.homedir(), '.config', 'amp', 'skills');
+    }
     
     for (const skillDir of SKILLS_DIRS) {
       const src = path.join(sourceDir, skillDir);
       const skillName = path.basename(skillDir);
-      const dest = path.join(ampConfigDir, skillName);
+      const dest = path.join(configDir, skillName);
       
       if (fs.existsSync(src)) {
         copyDirectory(src, dest);
@@ -108,7 +127,8 @@ function install(withSpawner = false) {
   // Create initial prd.json if it doesn't exist
   const prdJson = path.join(ralphDir, 'prd.json');
   if (!fs.existsSync(prdJson)) {
-    fs.writeFileSync(prdJson, '', 'utf8');
+    // Create empty JSON object instead of empty file
+    fs.writeFileSync(prdJson, '{}', 'utf8');
     console.log('\n  ✓ Created empty prd.json');
   }
   
