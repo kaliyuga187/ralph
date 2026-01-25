@@ -96,3 +96,46 @@ CREATE TRIGGER update_bids_updated_at
   BEFORE UPDATE ON bids
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
+
+-- Create function to get nearby jobs
+CREATE OR REPLACE FUNCTION get_nearby_jobs(
+  trade_lat DECIMAL,
+  trade_lng DECIMAL,
+  max_distance DECIMAL
+) RETURNS TABLE (
+  id UUID,
+  client_id UUID,
+  title TEXT,
+  description TEXT,
+  address TEXT,
+  lat DECIMAL,
+  lng DECIMAL,
+  service_type service_type,
+  status job_status,
+  budget_min INTEGER,
+  budget_max INTEGER,
+  created_at TIMESTAMP WITH TIME ZONE,
+  distance DECIMAL
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    j.id,
+    j.client_id,
+    j.title,
+    j.description,
+    j.address,
+    j.lat,
+    j.lng,
+    j.service_type,
+    j.status,
+    j.budget_min,
+    j.budget_max,
+    j.created_at,
+    calculate_distance(trade_lat, trade_lng, j.lat, j.lng) AS distance
+  FROM jobs j
+  WHERE j.status = 'open'
+    AND calculate_distance(trade_lat, trade_lng, j.lat, j.lng) <= max_distance
+  ORDER BY distance ASC;
+END;
+$$ LANGUAGE plpgsql;

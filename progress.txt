@@ -225,3 +225,38 @@
   - US-014: Bidding system schema (complete)
 - **Status:** Database migrations ready, UI implementation needed
 ---
+## 2026-01-24 08:05 - US-012 through US-015
+- Completed core marketplace features: geo-matching, job browsing, and bidding system
+- Files created:
+  - app/api/jobs/nearby/route.ts (API endpoint for geo-matched jobs)
+  - app/jobs/[id]/page.tsx (job detail page with bid submission)
+- Files modified:
+  - supabase/migrations/003_geo_matching_and_bids.sql (added get_nearby_jobs function)
+  - app/dashboard/trade/page.tsx (complete rebuild with filtering and sorting)
+- US-012 (Geo-Matching):
+  - Haversine distance calculation function (SQL)
+  - get_nearby_jobs function returns jobs within service radius
+  - API endpoint to query nearby jobs by user
+- US-013 (Trade Dashboard):
+  - Browse all open jobs
+  - Filter by service type
+  - Sort by: newest, closest, highest budget
+  - Empty state with helpful messaging
+  - Job cards with distance, budget, description
+  - "View Details & Submit Bid" CTA on each job
+- US-014 (Bidding Schema):
+  - bids table with RLS policies (already created in migration 003)
+  - Constraint: one bid per trade per job
+- US-015 (Bid Submission):
+  - Job detail page with aerial map view
+  - Bid form: amount, timeline, message
+  - Check for existing bid (shows status if already bid)
+  - Aggressive messaging: "Early bids get 30% more responses"
+  - Success state with redirect to dashboard
+- **Learnings:**
+  - Next.js API routes use NextRequest/NextResponse
+  - Dynamic routes use params from useParams hook
+  - Supabase RPC calls for custom SQL functions
+  - Client-side filtering faster than re-querying for small datasets
+  - Empty states improve UX when no results
+---
