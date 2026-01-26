@@ -346,10 +346,8 @@ cat > "$OUTPUT_DIR/package.json.tmp" << 'EOF'
 }
 EOF
 
-# Merge with existing package.json if it exists
-if [ -f "$OUTPUT_DIR/package.json" ]; then
-    mv "$OUTPUT_DIR/package.json.tmp" "$OUTPUT_DIR/package.json"
-fi
+# Merge with existing package.json
+mv "$OUTPUT_DIR/package.json.tmp" "$OUTPUT_DIR/package.json"
 
 # Initialize git repository in output directory
 echo -e "${GREEN}Initializing git repository...${NC}"
