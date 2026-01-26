@@ -1,0 +1,43 @@
+#!/bin/bash
+# ralph-extract-aerial - Simple wrapper for extraction script
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Show help if requested
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+    cat << EOF
+Ralph - Extract Aerial Estimate Platform
+
+Usage:
+  ralph-extract-aerial [OUTPUT_DIR]
+
+Arguments:
+  OUTPUT_DIR    Directory to extract to (default: ./aerial-estimate-platform)
+
+Examples:
+  ralph-extract-aerial                    # Extract to ./aerial-estimate-platform
+  ralph-extract-aerial /path/to/output    # Extract to custom location
+  ralph-extract-aerial ~/projects/aerial  # Extract to home directory
+
+The extraction creates a complete standalone Next.js project including:
+  - Full application code (19 pages, 11 components)
+  - Database migrations (5 SQL files)
+  - Documentation (README, deployment guides)
+  - Configuration files
+  - Initialized git repository
+
+After extraction:
+  1. cd [OUTPUT_DIR]
+  2. npm install
+  3. cp .env.local.example .env.local
+  4. Add your Supabase and Mapbox API keys
+  5. Apply database migrations in Supabase
+  6. npm run dev
+
+See AERIAL_EXTRACTION.md for full documentation.
+EOF
+    exit 0
+fi
+
+# Run the extraction script
+exec "$SCRIPT_DIR/extract-aerial-platform.sh" "$@"

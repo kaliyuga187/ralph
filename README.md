@@ -122,6 +122,9 @@ Ralph will:
 | `skills/prd/` | Skill for generating PRDs |
 | `skills/ralph/` | Skill for converting PRDs to JSON |
 | `flowchart/` | Interactive visualization of how Ralph works |
+| `aerial-platform/` | Example SaaS app built with Ralph (two-sided marketplace) |
+| `bin/extract-aerial-platform.sh` | Script to extract aerial-platform as standalone project |
+| `AERIAL_EXTRACTION.md` | Guide for extracting and deploying aerial-platform |
 
 ## Flowchart
 
@@ -136,6 +139,36 @@ cd flowchart
 npm install
 npm run dev
 ```
+
+## Aerial Estimate Platform - Example Application
+
+This repository includes a **complete production-ready SaaS application** built using Ralph to demonstrate its capabilities. The Aerial Estimate Platform is a two-sided marketplace connecting homeowners with contractors using aerial imagery.
+
+**Built in ~60 minutes with 50+ user stories implemented autonomously!**
+
+### Extract the Platform
+
+To use the Aerial Estimate Platform as a standalone project or template:
+
+```bash
+# Extract to current directory
+./bin/extract-aerial-platform.sh
+
+# Extract to custom location  
+./bin/extract-aerial-platform.sh /path/to/output
+```
+
+See **[AERIAL_EXTRACTION.md](AERIAL_EXTRACTION.md)** for complete extraction and deployment guide.
+
+### What's Included
+
+- ✅ Complete Next.js 16 + TypeScript application
+- ✅ Supabase database with 5 migration files (9 tables)
+- ✅ Authentication, dashboards, job posting, bidding
+- ✅ Mapbox aerial imagery integration
+- ✅ Production deployment configs (Vercel)
+- ✅ Mobile app configuration (React Native)
+- ✅ Comprehensive documentation
 
 ## Critical Concepts
 
