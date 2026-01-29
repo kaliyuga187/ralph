@@ -26,7 +26,7 @@ export const registerSchema = z.object({
     .max(100, "Full name must not exceed 100 characters")
     .regex(/^[a-zA-Z\s'-]+$/, "Full name contains invalid characters"),
   userType: z.enum(["homeowner", "contractor"], {
-    errorMap: () => ({ message: "User type must be homeowner or contractor" }),
+    message: "User type must be homeowner or contractor",
   }),
 });
 
@@ -269,7 +269,7 @@ export function validate<T extends z.ZodType>(
     return { success: true, data: result.data };
   }
 
-  const errors = result.error.errors.map(
+  const errors = result.error.issues.map(
     (err) => `${err.path.join(".")}: ${err.message}`
   );
 
