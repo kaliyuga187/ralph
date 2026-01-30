@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 
 // Server-side DOMPurify setup
 const window = new JSDOM("").window;
-const purify = DOMPurify(window as unknown as Window);
+const purify = DOMPurify(window as any);
 
 /**
  * Sanitize HTML content allowing only safe tags
@@ -28,8 +28,7 @@ export function sanitizeHtml(dirty: string): string {
     FORCE_BODY: false,
     RETURN_DOM: false,
     RETURN_DOM_FRAGMENT: false,
-    RETURN_DOM_IMPORT: false,
-  });
+  }) as string;
 }
 
 /**
@@ -113,7 +112,7 @@ export function sanitizeFilename(filename: string): string {
  */
 export function sanitizeSearchQuery(query: string): string {
   // Remove special SQL characters
-  let clean = query.replace(/[';--]/g, "");
+  let clean = query.replace(/[';\-]/g, "");
 
   // Limit length
   if (clean.length > 100) {
