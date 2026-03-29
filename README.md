@@ -8,6 +8,15 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 
 [Read my in-depth article on how I use Ralph](https://x.com/ryancarson/status/2008548371712135632)
 
+## Contributing
+
+Want to collaborate on Ralph with other users? See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions on:
+- How to fork and clone the repository
+- Setting up your development environment
+- Making and testing changes
+- Submitting pull requests
+- Code style and conventions
+
 ## Prerequisites
 
 - [Amp CLI](https://ampcode.com) installed and authenticated
